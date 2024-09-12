@@ -1,0 +1,21 @@
+.bloque{
+    padding: 0 20px 0 20px;
+}
+
+.camera{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    background-color: rgb(172, 172, 172);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.nav {
+    justify-content: space-evenly; 
+    display: flex;
+    margin-left: 10px;
+}
