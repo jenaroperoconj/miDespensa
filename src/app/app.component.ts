@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, MenuController } from '@ionic/angular';
 import { Auth } from '@angular/fire/auth';
 import { signOut } from 'firebase/auth';
-import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +19,12 @@ export class AppComponent {
   ) {}
 
   async navigateAndClose(route: string) {
-    await this.menuCtrl.close('main-menu'); // Cierra el menú
-    this.router.navigateByUrl(route); // Redirige a la ruta indicada
+    try {
+      await this.menuCtrl.close('main-menu'); // Intenta cerrar el menú
+      await this.router.navigateByUrl(route); // Navega a la nueva ruta
+    } catch (error) {
+      console.error('Error al navegar y cerrar menú:', error);
+    }
   }
 
   async logout() {
@@ -32,5 +35,4 @@ export class AppComponent {
       console.error('Error al cerrar sesión:', error);
     }
   }
-
 }
