@@ -1,13 +1,15 @@
 import { Routes } from '@angular/router';
+import { provideRouter } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { ProductsComponent } from './products/products.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
-  {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent},
+  { path: 'products', component: ProductsComponent},
+  { path: 'login', component: LoginComponent},
+  { path: '**', redirectTo: 'home' }
 ];
+
+export const appRoutingProviders = [provideRouter(routes)];
