@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Detalle del Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="productForm" (ngSubmit)="guardarCambios()">
+    <ion-list lines="full">
+      <ion-item>
+        <ion-label position="stacked">Nombre del Producto</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Marca</ion-label>
+        <ion-input formControlName="marca"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Cantidad</ion-label>
+        <ion-input type="number" formControlName="cantidad"></ion-input>
+      </ion-item>
+
+      <!-- Mostrar la fecha y abrir el modal para cambiarla -->
+      <ion-item>
+        <ion-label position="stacked">Fecha de Vencimiento</ion-label>
+        <div class="fecha-seleccionada">
+          <p>{{ productForm.get('fechaVencimiento')?.value | date: 'dd MMMM yyyy' }}</p>
+          <ion-button size="small" (click)="abrirCalendario()">Cambiar</ion-button>
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Categoría</ion-label>
+        <ion-input formControlName="categoria"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">SKU</ion-label>
+        <ion-input formControlName="sku"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" color="success" type="submit">
+        Guardar Cambios
+      </ion-button>
+      <ion-button expand="block" color="danger" (click)="eliminarProducto()">
+        Eliminar Producto
+      </ion-button>
+    </div>
+  </form>
+
+  <!-- Modal con el ion-datetime para seleccionar la fecha -->
+  <ion-modal [isOpen]="mostrarCalendario" (didDismiss)="cerrarCalendario()">
+    <ng-template>
+      <ion-content>
+        <ion-datetime 
+          presentation="date" 
+          (ionChange)="seleccionarFecha($event)">
+        </ion-datetime>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

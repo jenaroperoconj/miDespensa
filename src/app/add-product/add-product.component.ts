@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, IonicModule, CommonModule], // Asegúrate de importar ReactiveFormsModule aquí
+  imports: [ReactiveFormsModule, IonicModule, CommonModule],
 })
 export class AddProductComponent {
   productForm: FormGroup;

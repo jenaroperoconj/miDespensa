@@ -20,8 +20,8 @@ export class AppComponent {
 
   async navigateAndClose(route: string) {
     try {
-      await this.menuCtrl.close('main-menu'); // Intenta cerrar el menú
-      await this.router.navigateByUrl(route); // Navega a la nueva ruta
+      await this.menuCtrl.close('main-menu'); 
+      await this.router.navigateByUrl(route); 
     } catch (error) {
       console.error('Error al navegar y cerrar menú:', error);
     }
